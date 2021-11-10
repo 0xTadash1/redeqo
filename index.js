@@ -37,7 +37,7 @@ app.get('/', async (req, rep) => {
 
 
 async function gotBody(s) {
-  if (s.match(/redeqo\.fly\.dev/)) {
+  if (s.match(/redeqo\.deta\.dev/)) {
     throw new Error('avoid recursive access');
   }
   return (await got(s)).body;
