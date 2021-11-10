@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug index.js",
+            "program": "${workspaceFolder}/index.js",
+            "request": "launch",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "type": "pwa-node",
+            "env": {
+                "PORT": "3000"
+            }
+        }
+    ]
+}
