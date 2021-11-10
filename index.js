@@ -3,6 +3,7 @@ const jsdom = require('jsdom');
 const { JSDOM } = jsdom;
 const njk = require('nunjucks');
 
+const isDebug = process.env.IS_DEBUG === 'true';
 const port = process.env.PORT || 3000;
 
 const app = require('fastify')({ logger: true });
@@ -84,4 +85,9 @@ const start = async () => {
     process.exit(1);
   }
 }
-start();
+
+if (isDebug) {
+  start();
+} else {
+  module.exports = app;
+}

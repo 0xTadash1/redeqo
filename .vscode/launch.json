@@ -10,6 +10,7 @@
             ],
             "type": "pwa-node",
             "env": {
+                "IS_DEBUG": "true",
                 "PORT": "3000"
             }
         }
