@@ -6,7 +6,7 @@ const { JSDOM } = jsdom;
 const njk = require('nunjucks');
 
 const isDebug = process.env.IS_DEBUG === 'true';
-const port = process.env.PORT || 3000;
+const port = Number(process.env.PORT || '3000');
 
 const app = require('fastify')({ logger: true });
 
@@ -47,9 +47,9 @@ app.get('/', async (req, rep) => {
     // Download template as needed, and Render
     if (dst.startsWith('http')) {
       const template = njk.compile(await gotBody(dst), env);
-      rep.send(template.render(ctx));
+      return rep.send(template.render(ctx));
     } else {
-      rep.send(env.render(dst, ctx));
+      return rep.send(env.render(dst, ctx));
     }
   } catch (err) {
     return err;
