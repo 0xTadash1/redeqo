@@ -1,6 +1,8 @@
 # redeqo
 
-Web-based template engine for terminals. Flexible mapping of your website contents (portfolio, project homepage, etc) to templates in plain text, shell script, Python or anything else.
+Web-based template mapper for terminals.
+Map your website (blog, portfolio, project wiki, etc) contents to
+plain text, shell scripts, Python or others.
 
 Also, You can share the URL and anybody can show or run the response via **`curl`**.
 
