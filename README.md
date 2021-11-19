@@ -37,7 +37,9 @@ The second one overrides it with another template in `&d=...` query.
 ---
 
 - Other
-  - [ ] RootPage without queries such as `?src=...`
+  - [x] RootPage without queries such as `?src=...`
+    - [x] User-Agent == curl
+    - [x] else
   - [ ] Documents
   - [ ] Sample/Default templates
     - [ ] ANSI Colored

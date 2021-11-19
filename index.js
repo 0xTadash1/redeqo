@@ -1,3 +1,5 @@
+const path = require('path');
+
 const got = require('got');
 const jsdom = require('jsdom');
 const { JSDOM } = jsdom;
@@ -8,10 +10,29 @@ const port = process.env.PORT || 3000;
 
 const app = require('fastify')({ logger: true });
 
+app.register(require('fastify-static'), {
+  root: path.join(__dirname, 'public'),
+  prefix: '/public/',
+})
 
 app.get('/', async (req, rep) => {
   try {
     const src = req.query.s ?? req.query.src;
+
+    if (!src) {
+      if (req.headers['user-agent'].match(/curl\/(\d+\.?)+/)) {
+        return rep.send((() => {
+          const title = 'redeqo';
+          const p = 'Web-based template mapper for terminals';
+          const github = 'https://github.com/0xTadash1/redeqo';
+
+          return title + ' -- ' + p + '\n' + github + '\n';
+        })());
+      } else {
+        return rep.sendFile('index.html');
+      }
+    }
+
     const dom = new JSDOM(await gotBody(src));
     // Priority: query > HTML meta tag
     const dst = req.query.d ?? req.query.dst ?? dom.window.document
